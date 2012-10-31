@@ -38,19 +38,19 @@
   		<groupId>org.springframework.security.extensions</groupId>
   		<artifactId>spring-security-saml2-core</artifactId>
   		<version>1.0.0-RC1-SNAPSHOT</version>
-  		<exclusions>
-  			<exclusion>
-  				<groupId>org.opensaml</groupId>
-  				<artifactId>opensaml</artifactId>
-  			</exclusion>
-  		</exclusions>
+<!--   		<exclusions> -->
+<!--   			<exclusion> -->
+<!--   				<groupId>org.opensaml</groupId> -->
+<!--   				<artifactId>opensaml</artifactId> -->
+<!--   			</exclusion> -->
+<!--   		</exclusions> -->
   	</dependency>
   	
-  	<dependency>
-  		<groupId>org.opensaml</groupId>
-  		<artifactId>opensaml</artifactId>
-  		<version>2.4.1</version>
-  	</dependency>
+<!--   	<dependency> -->
+<!--   		<groupId>org.opensaml</groupId> -->
+<!--   		<artifactId>opensaml</artifactId> -->
+<!--   		<version>2.4.1</version> -->
+<!--   	</dependency> -->
   </dependencies>
   
 
