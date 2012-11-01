@@ -1,0 +1,3 @@
+Install file to local maven repository
+
+mvn install:install-file -Dfile=*.jar -Dpackaging=jar -DgroupId=org.springframework.security.ext -DartifactId=spring-security-saml-CALLISTA -Dversion=1.0-CALLISTA
