@@ -65,7 +65,48 @@
                   <target>1.6</target>
               </configuration>
           </plugin>
-      </plugins>
+         </plugins>
+         <pluginManagement>
+			<plugins>
+            <plugin>
+	  			<groupId>com.mycila.maven-license-plugin</groupId>
+	  			<artifactId>maven-license-plugin</artifactId>
+	  			<configuration>
+	  				<properties>
+	  					<year>2011,2012</year>
+	  				</properties>
+	  				<strictCheck>true</strictCheck>
+	  				<header>src/license/apache_v2/header.txt</header>
+	  				<encoding>UTF-8</encoding>
+	  				<includes>
+	  					<include>src/main/**</include>
+	  					<include>src/test/**</include>
+	  				</includes>
+	  				<excludes>
+	  					<exclude>**/*jquery*</exclude>
+	  					<exclude>**/*bootstrap*</exclude>
+	  					<exclude>**/*json2*</exclude>
+	  					<exclude>**/*.xsd</exclude>
+	  					<exclude>**/scripts/*</exclude>
+	  					<exclude>**/*.cert</exclude>
+	  					<exclude>**/*.jks</exclude>
+	  				</excludes>
+	  				<mapping>
+	  					<tag>DYNASCRIPT_STYLE</tag>
+	  				</mapping>
+	  			</configuration>
+	  			<executions>
+	  				<execution>
+	  					<id>check-headers-for-license</id>
+	  					<goals>
+	  						<goal>check</goal>
+	  					</goals>
+	  					<phase>validate</phase>
+	  				</execution>
+	  			</executions>
+	  		</plugin>
+      	</plugins>
+      </pluginManagement>
   </build>
 
   <repositories>
