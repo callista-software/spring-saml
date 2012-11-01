@@ -49,16 +49,16 @@
     </bean>
 
     <!-- Handler deciding where to redirect user after successful login -->
-<!--     <bean id="successRedirectHandler" -->
-<!--           class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"> -->
-<!--         <property name="defaultTargetUrl" value="${saml.successful.login.url}"/> -->
-<!--     </bean> -->
+    <bean id="successRedirectHandler"
+          class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+        <property name="defaultTargetUrl" value="${saml.successful.login.url}"/>
+    </bean>
     <!--
     Use the following for interpreting RelayState coming from unsolicited response as redirect URL:
     -->
-    <bean id="successRedirectHandler" class="org.springframework.security.saml.SAMLRelayStateSuccessHandler">
-       <property name="defaultTargetUrl" value="${saml.successful.login.url}" />
-    </bean>
+<!--     <bean id="successRedirectHandler" class="org.springframework.security.saml.SAMLRelayStateSuccessHandler"> -->
+<!--        <property name="defaultTargetUrl" value="${saml.successful.login.url}" /> -->
+<!--     </bean> -->
 
     <!-- Handler for successful logout -->
     <bean id="successLogoutHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
@@ -109,7 +109,13 @@
     <!-- Filter automatically generates default SP metadata -->
     <bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
         <constructor-arg>
-            <bean class="org.springframework.security.saml.metadata.MetadataGenerator"/>
+            <bean class="org.springframework.security.saml.metadata.MetadataGenerator">
+                <property name="includeDiscovery" value="false"/>
+                <property name="requestSigned" value="false"/>
+                <property name="wantAssertionSigned" value="true"/>
+                <property name="signMetadata" value="true"/>
+                <property name="entityAlias" value="defaultAlias"/>
+            </bean>
         </constructor-arg>
     </bean>
 
@@ -153,7 +159,7 @@
         <!-- OPTIONAL used when one of the metadata files contains information about this service provider -->
         <!-- <property name="hostedSPName" value=""/> -->
         <!-- OPTIONAL property: can tell the system which IDP should be used for authenticating user by default. -->
-        <!-- <property name="defaultIDP" value="http://localhost:8080/opensso"/> -->
+        <property name="defaultIDP" value="${saml.metadata.url}"/>
     </bean>
 
     <!-- SAML Authentication Provider responsible for validating of received SAML messages -->
