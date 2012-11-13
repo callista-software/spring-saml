@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>netcare-saml</artifactId>
@@ -33,25 +34,29 @@
         <version>3.1.0.RELEASE</version>
         <scope>provided</scope>
     </dependency>
-  	<dependency>
+    <dependency>
+        <groupId>org.springframework.security.ext</groupId>
+        <artifactId>spring-security-saml-CALLISTA</artifactId>
+        <version>1.0.1-CALLISTA</version>
+    </dependency>
+<!--  	<dependency>
   		<groupId>org.springframework.security.extensions</groupId>
   		<artifactId>spring-security-saml2-core</artifactId>
-  		<version>1.0.0-RC1-SNAPSHOT</version>
+  		<version>1.0.0-RC1-SNAPSHOT</version> -->
 <!--   		<exclusions> -->
 <!--   			<exclusion> -->
 <!--   				<groupId>org.opensaml</groupId> -->
 <!--   				<artifactId>opensaml</artifactId> -->
 <!--   			</exclusion> -->
 <!--   		</exclusions> -->
-  	</dependency>
-  	
+<!--  	</dependency>
+-->  	
   	<dependency>
   		<groupId>org.opensaml</groupId>
   		<artifactId>opensaml</artifactId>
   		<version>2.5.3</version>
   	</dependency>
   </dependencies>
-  
 
   <build>
       <plugins>
@@ -128,8 +133,16 @@
     </repository>
     <repository>
       <id>opensaml-repo</id>
-      <url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
-    </repository>
+      <url>https://build.shibboleth.net/nexus/content/groups/public/</url>
+      <layout>default</layout> 
+      <releases>
+      	<enabled>true</enabled>
+      </releases>
+      <snapshots>
+      	<enabled>false</enabled>
+      </snapshots>
+   	</repository>
+    
   </repositories>
   
 </project>

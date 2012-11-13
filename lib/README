@@ -1,3 +1,6 @@
+#built from spring security saml commit version:
+#51a4952ebdd6aabcac6d80f51e43b25caefe1fd2
+
 Install file to local maven repository
 
-mvn install:install-file -Dfile=*.jar -Dpackaging=jar -DgroupId=org.springframework.security.ext -DartifactId=spring-security-saml-CALLISTA -Dversion=1.0-CALLISTA
+mvn install:install-file -Dfile=spring-security-saml2-core-1.0.1-CALLISTA.jar -Dpackaging=jar -DgroupId=org.springframework.security.ext -DartifactId=spring-security-saml-CALLISTA -Dversion=1.0.1-CALLISTA
