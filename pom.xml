@@ -65,6 +65,30 @@
 
   <build>
       <plugins>
+			<plugin>
+			  <artifactId>maven-resources-plugin</artifactId>
+			  <version>2.6</version>
+			  <executions>
+			    <execution>
+			      <id>copy-resources</id>
+			      <phase>validate</phase>
+			      <goals>
+			        <goal>copy-resources</goal>
+			      </goals>
+			      <configuration>
+			        <outputDirectory>${basedir}/target/classes/META-INF</outputDirectory>
+			        <resources>          
+			          <resource>
+			            <directory>${basedir}</directory>
+			                  <includes> 
+			        					<include>*.txt</include> 
+			     				</includes>
+			          </resource>
+			        </resources>              
+			      </configuration>            
+			    </execution>
+			  </executions>
+			</plugin>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
@@ -74,20 +98,7 @@
                   <target>1.6</target>
               </configuration>
           </plugin>
-          <plugin>
-			  <groupId>org.jasig.maven</groupId>
-			  <artifactId>maven-jasig-legal-plugin</artifactId>
-			  <version>1.0.2</version>
-			  <executions>
-				<execution>
-				  <id>copy-files</id>
-				  <goals>
-				    <goal>copy-files</goal>
-				  </goals>
-				</execution>
-			  </executions>
-			</plugin>
-	        <plugin>
+	      <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.3.2</version>
