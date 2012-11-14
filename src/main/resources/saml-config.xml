@@ -34,18 +34,6 @@
 <!--     <security:http security="none" pattern="/logout.jsp"/> -->
 <!--     <security:http security="none" pattern="/favicon.ico"/> -->
 
-
-	<!-- 
-		IN APPLICATION
-	 -->
-
-    <!-- Secured pages -->
-<!--     <security:http entry-point-ref="samlEntryPoint"> -->
-<!--         <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY"/> -->
-<!--         <security:custom-filter before="FIRST" ref="metadataGeneratorFilter"/> -->
-<!--         <security:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter"/> -->
-<!--     </security:http> -->
-
     <bean id="samlFilter" class="org.springframework.security.web.FilterChainProxy">
         <security:filter-chain-map request-matcher="ant">
             <security:filter-chain pattern="/saml/login/**" filters="samlEntryPoint"/>
@@ -54,14 +42,6 @@
             <security:filter-chain pattern="/saml/SSO/**" filters="samlWebSSOProcessingFilter"/>
             <security:filter-chain pattern="/saml/SSOHoK/**" filters="samlWebSSOHoKProcessingFilter"/>
             <security:filter-chain pattern="/saml/SingleLogout/**" filters="samlLogoutProcessingFilter"/>
-            
-            
-            <!-- 
-            	NOT NEEDED
-            	/ Marcus
-             -->
-            
-<!--             <security:filter-chain pattern="/saml/discovery/**" filters="samlIDPDiscovery"/> -->
         </security:filter-chain-map>
     </bean>
 
@@ -111,18 +91,6 @@
         </property>
     </bean>
 
-    
-    <!-- 
-    	NOT NEEDED
-    	FIX
-    	/Marcus
-     -->
-    
-    <!-- IDP Discovery Service -->
-<!--     <bean id="samlIDPDiscovery" class="org.springframework.security.saml.SAMLDiscovery"> -->
-<!--         <property name="idpSelectionPath" value="/WEB-INF/security/idpSelection.jsp"/> -->
-<!--     </bean> -->
-
     <!-- Filter automatically generates default SP metadata -->
     <bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
         <constructor-arg>
@@ -144,22 +112,6 @@
     <bean id="metadata" class="org.springframework.security.saml.metadata.CachingMetadataManager">
         <constructor-arg>
             <list>
-<!--                 <bean class="org.springframework.security.saml.metadata.ExtendedMetadataDelegate"> -->
-<!--                     <constructor-arg> -->
-<!--                         <bean class="org.opensaml.saml2.metadata.provider.FilesystemMetadataProvider"> -->
-<!--                             <constructor-arg> -->
-<!--                                 <value type="java.io.File">${saml.metadata.provider}</value> -->
-<!--                             </constructor-arg> -->
-<!--                             <property name="parserPool" ref="parserPool"/> -->
-<!--                         </bean> -->
-<!--                     </constructor-arg> -->
-<!--                     <constructor-arg> -->
-<!--                         <bean class="org.springframework.security.saml.metadata.ExtendedMetadata"> -->
-<!--                         </bean> -->
-<!--                     </constructor-arg> -->
-<!--                 </bean> -->
-                
-                
                 <bean class="org.opensaml.saml2.metadata.provider.HTTPMetadataProvider">
                     <!-- URL containing the metadata -->
                     <constructor-arg>
