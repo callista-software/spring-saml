@@ -21,18 +21,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <!-- Enable auto-wiring -->
     <context:annotation-config/>
     <context:component-scan base-package="
         org.springframework.security.saml,
         org.callistasoftware.netcare.commons.saml"/>
-
-    <!-- Unsecured pages -->
-<!--     <security:http security="none" pattern="/saml/web/**"/> -->
-<!--     <security:http security="none" pattern="/logout.jsp"/> -->
-<!--     <security:http security="none" pattern="/favicon.ico"/> -->
 
     <bean id="samlFilter" class="org.springframework.security.web.FilterChainProxy">
         <security:filter-chain-map request-matcher="ant">
@@ -63,7 +59,7 @@
     </bean>
 
     <!-- Register authentication manager with SAML provider -->
-    <security:authentication-manager alias="authenticationManager">
+    <security:authentication-manager id="samlAuthenticationManager" alias="samlAuthenticationManager">
         <security:authentication-provider ref="samlAuthenticationProvider"/>
     </security:authentication-manager>
 
@@ -141,13 +137,13 @@
 
     <!-- Processing filter for WebSSO profile messages -->
     <bean id="samlWebSSOProcessingFilter" class="org.springframework.security.saml.SAMLProcessingFilter">
-        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="authenticationManager" ref="samlAuthenticationManager"/>
         <property name="authenticationSuccessHandler" ref="successRedirectHandler"/>
     </bean>
 
     <!-- Processing filter for WebSSO Holder-of-Key profile -->
     <bean id="samlWebSSOHoKProcessingFilter" class="org.springframework.security.saml.SAMLWebSSOHoKProcessingFilter">
-        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="authenticationManager" ref="samlAuthenticationManager"/>
         <property name="authenticationSuccessHandler" ref="successRedirectHandler"/>
     </bean>
 
