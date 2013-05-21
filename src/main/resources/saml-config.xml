@@ -96,6 +96,8 @@
                 <property name="wantAssertionSigned" value="true"/>
                 <property name="signMetadata" value="true"/>
                 <property name="entityAlias" value="defaultAlias"/>
+                <property name="entityBaseURL" value="${saml.baseUrl}" />
+                <property name="entityId" value="${saml.baseUrl}/saml/metadata/alias/defaultAlias" />
             </bean>
         </constructor-arg>
     </bean>
