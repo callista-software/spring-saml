@@ -134,9 +134,6 @@
         <property name="userDetails" ref="citizenAuthenticationService" />
     </bean>
 
-    <!-- Provider of default SAML Context -->
-    <bean id="contextProvider" class="org.springframework.security.saml.context.SAMLContextProviderImpl"/>
-
     <!-- Processing filter for WebSSO profile messages -->
     <bean id="samlWebSSOProcessingFilter" class="org.springframework.security.saml.SAMLProcessingFilter">
         <property name="authenticationManager" ref="samlAuthenticationManager"/>

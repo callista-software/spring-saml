@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <import resource="saml-config.xml" />
+
+  <!-- Provider of SAML Context when behind proxy -->
+  <bean id="contextProvider" class="org.springframework.security.saml.context.SAMLContextProviderLB">
+    <property name="scheme" value="${saml.proxy.scheme}" />
+    <property name="serverName" value="${saml.proxy.host}" />
+    <property name="serverPort" value="${saml.proxy.port}" />
+    <property name="includeServerPortInRequestURL" value="${saml.proxy.includePortInRequestURL}" />
+    <property name="contextPath" value="${saml.proxy.contextPath}" />
+  </bean>
+
+</beans>
