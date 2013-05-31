@@ -14,4 +14,19 @@
     <property name="contextPath" value="${saml.proxy.contextPath}" />
   </bean>
 
+  <!-- IDP Metadata configuration - paths to metadata of IDPs in circle of trust is here -->
+  <!-- Do no forget to call iniitalize method on providers -->
+  <bean id="metadata" class="org.springframework.security.saml.metadata.CachingMetadataManager">
+    <constructor-arg>
+      <list>
+        <bean class="org.opensaml.saml2.metadata.provider.FilesystemMetadataProvider">
+          <constructor-arg>
+            <value type="java.io.File">file://${saml.metadata.location}</value>
+          </constructor-arg>
+          <property name="parserPool" ref="parserPool"/>
+        </bean>
+      </list>
+    </constructor-arg>
+  </bean>
+
 </beans>

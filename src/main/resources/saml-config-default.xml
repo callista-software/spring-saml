@@ -8,4 +8,28 @@
   <!-- Provider of default SAML Context -->
   <bean id="contextProvider" class="org.springframework.security.saml.context.SAMLContextProviderImpl" />
 
+  <!-- IDP Metadata configuration - paths to metadata of IDPs in circle of trust is here -->
+  <!-- Do no forget to call iniitalize method on providers -->
+  <bean id="metadata" class="org.springframework.security.saml.metadata.CachingMetadataManager">
+    <constructor-arg>
+      <list>
+        <bean class="org.opensaml.saml2.metadata.provider.HTTPMetadataProvider">
+          <!-- URL containing the metadata -->
+          <constructor-arg>
+            <value type="java.lang.String">${saml.metadata.location}</value>
+          </constructor-arg>
+          <!-- Timeout for metadata loading in ms -->
+          <constructor-arg>
+            <value type="int">5000</value>
+          </constructor-arg>
+          <property name="parserPool" ref="parserPool"/>
+        </bean>
+      </list>
+    </constructor-arg>
+    <!-- OPTIONAL used when one of the metadata files contains information about this service provider -->
+    <!-- <property name="hostedSPName" value=""/> -->
+    <!-- OPTIONAL property: can tell the system which IDP should be used for authenticating user by default. -->
+    <property name="defaultIDP" value="${saml.metadata.url}"/>
+  </bean>
+
 </beans>

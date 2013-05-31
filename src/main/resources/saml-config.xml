@@ -105,30 +105,6 @@
     <!-- The filter is waiting for connections on URL suffixed with filterSuffix and presents SP metadata there -->
     <bean id="metadataDisplayFilter" class="org.springframework.security.saml.metadata.MetadataDisplayFilter"/>
 
-    <!-- IDP Metadata configuration - paths to metadata of IDPs in circle of trust is here -->
-    <!-- Do no forget to call iniitalize method on providers -->
-    <bean id="metadata" class="org.springframework.security.saml.metadata.CachingMetadataManager">
-        <constructor-arg>
-            <list>
-                <bean class="org.opensaml.saml2.metadata.provider.HTTPMetadataProvider">
-                    <!-- URL containing the metadata -->
-                    <constructor-arg>
-                        <value type="java.lang.String">${saml.metadata.url}</value>
-                    </constructor-arg>
-                    <!-- Timeout for metadata loading in ms -->
-                    <constructor-arg>
-                        <value type="int">5000</value>
-                    </constructor-arg>
-                    <property name="parserPool" ref="parserPool"/>
-                </bean>
-            </list>
-        </constructor-arg>
-        <!-- OPTIONAL used when one of the metadata files contains information about this service provider -->
-        <!-- <property name="hostedSPName" value=""/> -->
-        <!-- OPTIONAL property: can tell the system which IDP should be used for authenticating user by default. -->
-        <property name="defaultIDP" value="${saml.metadata.url}"/>
-    </bean>
-
     <!-- SAML Authentication Provider responsible for validating of received SAML messages -->
     <bean id="samlAuthenticationProvider" class="org.springframework.security.saml.SAMLAuthenticationProvider">
         <property name="userDetails" ref="citizenAuthenticationService" />
