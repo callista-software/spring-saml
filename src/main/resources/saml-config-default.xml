@@ -29,7 +29,7 @@
     <!-- OPTIONAL used when one of the metadata files contains information about this service provider -->
     <!-- <property name="hostedSPName" value=""/> -->
     <!-- OPTIONAL property: can tell the system which IDP should be used for authenticating user by default. -->
-    <property name="defaultIDP" value="${saml.metadata.url}"/>
+    <property name="defaultIDP" value="${saml.metadata.location}"/>
   </bean>
 
 </beans>
