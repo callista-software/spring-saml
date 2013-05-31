@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>netcare-saml</artifactId>
   <groupId>org.callistasoftware.netcare.commons</groupId>
-  <version>1.4</version>
+  <version>1.5-SNAPSHOT</version>
   
   <name>Netcare Commons SAML Module</name>
   <description>Shared SAML Authentication Module</description>
