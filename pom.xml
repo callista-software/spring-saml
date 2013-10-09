@@ -81,6 +81,13 @@
   </dependencies>
 
   <build>
+          <extensions>
+        <extension>
+          <groupId>org.apache.maven.wagon</groupId>
+          <artifactId>wagon-webdav-jackrabbit</artifactId>
+          <version>2.2</version>
+        </extension>
+      </extensions> 
       <plugins>
 			<plugin>
 			  <artifactId>maven-resources-plugin</artifactId>
@@ -166,13 +173,13 @@
   
   <distributionManagement>
       <downloadUrl>https://netcare-commons.googlecode.com/files</downloadUrl>
-  <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>distributionRepository</id>
-      <name>Repository for distribution and publishing</name>
-      <url>file://${project.basedir}/releaseRepository</url>
-      <layout>default</layout>
-  </repository>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>cloudbees-private-release-repository</id>
+            <name>Cloudbees Release Repository</name>
+            <url>dav:https://repository-callistasoftware.forge.cloudbees.com/release</url>
+            <layout>default</layout>
+        </repository>
   </distributionManagement>
 
   <repositories>
