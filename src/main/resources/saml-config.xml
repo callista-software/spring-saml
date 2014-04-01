@@ -45,6 +45,7 @@
     <bean id="successRedirectHandler"
           class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
         <property name="defaultTargetUrl" value="${saml.successful.login.url}"/>
+        <property name="alwaysUseDefaultTargetUrl" value="${saml.successful.login.always.use.default.url}"/>
     </bean>
     <!--
     Use the following for interpreting RelayState coming from unsolicited response as redirect URL:
@@ -56,6 +57,7 @@
     <!-- Handler for successful logout -->
     <bean id="successLogoutHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
         <property name="defaultTargetUrl" value="${saml.successful.logout.url}"/>
+        <property name="alwaysUseDefaultTargetUrl" value="${saml.successful.logout.always.use.default.url}"/>
     </bean>
 
     <!-- Register authentication manager with SAML provider -->
